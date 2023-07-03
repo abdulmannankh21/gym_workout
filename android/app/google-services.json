@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "450098830825",
+    "project_id": "gymworkout-7b702",
+    "storage_bucket": "gymworkout-7b702.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450098830825:android:eb5a27579cbd43ffde7f78",
+        "android_client_info": {
+          "package_name": "com.example.gym_workout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450098830825-klpd0aa5cmee61gt0m58oreddjbvq6ca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBc0raN6kZzbNtEKXkl0_M3xQKAw4oCvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450098830825-klpd0aa5cmee61gt0m58oreddjbvq6ca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
