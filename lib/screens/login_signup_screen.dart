@@ -26,21 +26,20 @@ class LoginSignUpController extends GetxController {
 
     try {
       final userCredential = await signUpWithEmailAndPassword(email, password);
-      await storeUserCredentials(
-          userCredential.user!.uid, name, email, password);
+      await storeUserCredentials(userCredential.user!.uid, name, email, password);
 
-
+      // Send email verification
+      await sendEmailVerification();
 
       // Show snackbar message
       Get.snackbar(
         'Account Created',
-        'Your account has been successfully created!',
+        'Your account has been successfully created! Please verify your email.',
         snackPosition: SnackPosition.TOP,
-        backgroundGradient:  LinearGradient(
+        backgroundGradient: LinearGradient(
           colors: [Colors.blue, Colors.green],
-
         ),
-        colorText: Colors.green
+        colorText: Colors.green,
       );
 
       // Navigate back to the signup screen
@@ -50,6 +49,13 @@ class LoginSignUpController extends GetxController {
       print('Signup Error: $e');
     }
   }
+  Future<void> sendEmailVerification() async {
+    final user = _auth.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+    }
+  }
+
 
   Future<UserCredential> signUpWithEmailAndPassword(
       String email, String password) async {
@@ -76,7 +82,6 @@ class LoginSignUpController extends GetxController {
       print('Firestore Error: $e');
     }
   }
-
   Future<void> login() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -91,24 +96,36 @@ class LoginSignUpController extends GetxController {
         password: password,
       );
       if (userCredential.user != null) {
-        Get.snackbar(
-          'Login Success',
-          'You have successfully logged in!',
-          snackPosition: SnackPosition.TOP,
-          backgroundGradient:  LinearGradient(
-            colors: [Colors.blue, Colors.green],
-          ),
-          colorText: Colors.green,
-        );
-        Get.off(() => ProfAge());
+        if (userCredential.user!.emailVerified) {
+          Get.snackbar(
+            'Login Success',
+            'You have successfully logged in!',
+            snackPosition: SnackPosition.TOP,
+            backgroundGradient: LinearGradient(
+              colors: [Colors.blue, Colors.green],
+            ),
+            colorText: Colors.green,
+          );
+          Get.off(() => ProfAge());
+        } else {
+          Get.snackbar(
+            'Login Failed',
+            'Please verify your email before logging in.',
+            snackPosition: SnackPosition.TOP,
+            backgroundGradient: LinearGradient(
+              colors: [Colors.blue, Colors.green],
+            ),
+            colorText: Colors.red,
+          );
+        }
       } else {
         Get.snackbar(
           'Login Failed',
           'Invalid email or password. Please try again.',
           snackPosition: SnackPosition.TOP,
-         backgroundGradient:  LinearGradient(
-           colors: [Colors.blue, Colors.green],
-         ),
+          backgroundGradient: LinearGradient(
+            colors: [Colors.blue, Colors.green],
+          ),
           colorText: Colors.red,
         );
       }
@@ -118,12 +135,13 @@ class LoginSignUpController extends GetxController {
         'Login Error',
         'An error occurred during login. Please try again.',
         snackPosition: SnackPosition.TOP,
-        backgroundGradient:  LinearGradient(
+        backgroundGradient: LinearGradient(
           colors: [Colors.blue, Colors.green],
         ),
       );
     }
   }
+
 
 }
 

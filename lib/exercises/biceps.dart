@@ -58,81 +58,86 @@ class BicepsScreen extends StatelessWidget {
                   'assets/sh.png',
                   fit: BoxFit.fill,
                 )),
-            const Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                'Biceps',
-                style: TextStyle(
-                    fontSize: 26,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Biceps',
+                    style: TextStyle(
+                        fontSize: 50,
+                        color: Colors.white.withOpacity(0.3),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                '5 Workouts for bignner',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(96, 110, 108, 108),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: const Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.play_arrow_rounded,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          Text(
-                            '60 min',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 70),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(96, 110, 108, 108),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/Flame.png'),
-                          const Text(
-                            '  350 Cal',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+            // const Padding(
+            //   padding: EdgeInsets.only(left: 10),
+            //   child: Text(
+            //     '5 Workouts for bignner',
+            //     style: TextStyle(
+            //         fontSize: 16,
+            //         color: Colors.green,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Container(
+            //       decoration: BoxDecoration(
+            //         color: const Color.fromARGB(96, 110, 108, 108),
+            //         borderRadius: BorderRadius.circular(40),
+            //       ),
+            //       child: const Center(
+            //         child: Padding(
+            //           padding: EdgeInsets.symmetric(
+            //               horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: [
+            //               Icon(
+            //                 Icons.play_arrow_rounded,
+            //                 color: Colors.white,
+            //                 size: 25,
+            //               ),
+            //               Text(
+            //                 '60 min',
+            //                 style: TextStyle(color: Colors.white, fontSize: 12),
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //     const SizedBox(width: 70),
+            //     Container(
+            //       decoration: BoxDecoration(
+            //         color: const Color.fromARGB(96, 110, 108, 108),
+            //         borderRadius: BorderRadius.circular(40),
+            //       ),
+            //       child: Center(
+            //         child: Padding(
+            //           padding: const EdgeInsets.symmetric(
+            //               horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: [
+            //               Image.asset('assets/Flame.png'),
+            //               const Text(
+            //                 '  350 Cal',
+            //                 style: TextStyle(color: Colors.white, fontSize: 12),
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
             const Padding(
               padding:
                   EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
@@ -145,10 +150,11 @@ class BicepsScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 10),
+                      padding: const EdgeInsets.all(20),
                       child: GestureDetector(
                         onTap: () {
                           Get.to(screens[index]);
@@ -171,7 +177,7 @@ class BicepsScreen extends StatelessWidget {
                                       titles[index],
                                       softWrap: true,
                                       style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
