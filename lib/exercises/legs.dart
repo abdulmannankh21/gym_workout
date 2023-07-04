@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/Bisceps/Biceps1.dart';
-import 'package:gym_workout/screens/bisceps/Cable_CloseGrip_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Ez_Barbel_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Rope_Biceps_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Standing_Dumbbel_Screen.dart';
+import 'package:gym_workout/screens/legs/legs1.dart';
+import 'package:gym_workout/screens/legs/legs2.dart';
+import 'package:gym_workout/screens/legs/legs3.dart';
+import 'package:gym_workout/screens/legs/legs4.dart';
+import 'package:gym_workout/screens/legs/legs5.dart';
 
-class BicepsScreen extends StatelessWidget {
-  BicepsScreen({super.key});
+class LegsScreen extends StatelessWidget {
+  LegsScreen({super.key});
 
-  List imgs = [
-    'assets/gifs/bi1.gif',
-    'assets/gifs/bi2.gif',
-    'assets/gifs/bi3.gif',
-    'assets/gifs/bi4.gif',
-    'assets/gifs/bi5.gif',
+  final List imgs = [
+    'assets/gifs/leg1.gif',
+    'assets/gifs/leg2.gif',
+    'assets/gifs/leg3.gif',
+    'assets/gifs/leg4.gif',
+    'assets/gifs/leg5.gif',
   ];
 
-  List titles = [
-    'Dumbbell alternate preacher\ncurls ',
-    'Standing dumbbell biceps\ncurl',
-    'Rope biceps Hammer\ncurl ',
-    'Ez barbell close grip\npreacher curl ',
-    'Cable close grip\ncurl '
+  final List titles = [
+    'Lever lying leg\ncurl thighs',
+    'Leg press calf\nraise',
+    'Barbell hip thrusts',
+    'Squat hold calf\nraise',
+    'Barbell clean grip\nfront squat thighs',
   ];
 
-  List screens = const [
-    Biceps1(),
-    Biceps2(),
-    Biceps3(),
-    Biceps4(),
-    Biceps5(),
+  final List screens = const [
+    Legs1(),
+    Legs2(),
+    Legs3(),
+    Legs4(),
+    Legs5(),
   ];
 
   @override
@@ -43,7 +43,7 @@ class BicepsScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Biceps',
+            'Legs',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -61,7 +61,7 @@ class BicepsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Biceps',
+                'Legs',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -89,12 +89,12 @@ class BicepsScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -156,7 +156,7 @@ class BicepsScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -177,9 +177,9 @@ class BicepsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

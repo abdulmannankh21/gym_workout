@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:gym_workout/screens/login_signup_screen.dart';
 import 'package:gym_workout/screens/profile_edit.dart';
 
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -166,7 +166,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.off(LoginSignUpScreen(true));
+                            Get.off(LoginSignUpScreen(isSignup:true));
                           },
                           style: ElevatedButton.styleFrom(
                               elevation: 1,

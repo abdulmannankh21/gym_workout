@@ -5,7 +5,7 @@ import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 
 import '../sizes.dart';
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -77,7 +77,7 @@ class OtpScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LoginSignUpScreen(false)));
+                          builder: (context) => LoginSignUpScreen(isSignup:false)));
                 },
                 margin: EdgeInsets.all(30),
                 decoration: BoxDecoration(

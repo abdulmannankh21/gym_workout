@@ -1,9 +1,9 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gym_workout/screens/BottomNavBar.dart';
+import 'package:gym_workout/screens/bottomnavbar.dart';
 
 import '../sizes.dart';
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class Progressbar extends StatefulWidget {
   const Progressbar({super.key});

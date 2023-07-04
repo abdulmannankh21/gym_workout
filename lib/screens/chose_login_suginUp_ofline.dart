@@ -4,7 +4,7 @@ import 'package:gym_workout/screens/login_signup_screen.dart';
 import 'package:gym_workout/sizes.dart';
 import 'package:gym_workout/workouts/workout.dart';
 
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class ChoseLoginOfline extends StatelessWidget {
   const ChoseLoginOfline({super.key});
@@ -53,7 +53,7 @@ class ChoseLoginOfline extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LoginSignUpScreen(true)));
+                          builder: (context) => LoginSignUpScreen(isSignup: true)));
                 },
                 decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -68,7 +68,7 @@ class ChoseLoginOfline extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LoginSignUpScreen(false)));
+                          builder: (context) => LoginSignUpScreen(isSignup:false)));
                 },
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(

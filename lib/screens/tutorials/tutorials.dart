@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gym_workout/screens/tutorials/Tadvance.dart';
+import 'package:gym_workout/screens/tutorials/tadvance.dart';
 
-import 'Tbignner.dart';
-import 'Tintermediate.dart';
+import 'tbignner.dart';
+import 'tintermediate.dart';
 
 class TutorialScreen extends StatelessWidget {
   @override

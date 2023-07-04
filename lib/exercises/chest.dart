@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/legs/Legs1.dart';
-import 'package:gym_workout/screens/legs/Legs2.dart';
-import 'package:gym_workout/screens/legs/Legs3.dart';
-import 'package:gym_workout/screens/legs/Legs4.dart';
-import 'package:gym_workout/screens/legs/Legs5.dart';
+import 'package:gym_workout/screens/chest/chest4.dart';
+import '../screens/chest/chest1.dart';
+import '../screens/chest/chest2.dart';
+import '../screens/chest/chest3.dart';
+import '../screens/chest/chest5.dart';
+import '../screens/chest/chest6.dart';
 
-class LegsScreen extends StatelessWidget {
-  LegsScreen({super.key});
+class ChestScreen extends StatelessWidget {
+  ChestScreen({super.key});
 
-  List imgs = [
-    'assets/gifs/leg1.gif',
-    'assets/gifs/leg2.gif',
-    'assets/gifs/leg3.gif',
-    'assets/gifs/leg4.gif',
-    'assets/gifs/leg5.gif',
+  final List imgs = [
+    'assets/gifs/chest1.gif',
+    'assets/gifs/chest2.gif',
+    'assets/gifs/chest3.gif',
+    'assets/gifs/chest4.gif',
+    'assets/gifs/chest5.gif',
+    'assets/gifs/chest6.gif'
   ];
 
-  List titles = [
-    'Lever lying leg\ncurl thighs',
-    'Leg press calf\nraise',
-    'Barbell hip thrusts',
-    'Squat hold calf\nraise',
-    'Barbell clean grip\nfront squat thighs',
+  final List titles = [
+    'Barbell Bench Press',
+    'Dumbbell Bench Press',
+    'Dumbbell Fly Press',
+    'Dumbbell Decline Bench Press',
+    'Barbell Incline Bench Press',
+    'Dumbbell Decline Fly'
   ];
 
-  List screens = const [
-    Legs1(),
-    Legs2(),
-    Legs3(),
-    Legs4(),
-    Legs5(),
+  final List screens = const [
+    Chest1(),
+    Chest2(),
+    Chest3(),
+    Chest4(),
+    Chest5(),
+    Chest6(),
   ];
 
   @override
@@ -43,7 +47,7 @@ class LegsScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Legs',
+            'Chest',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -61,7 +65,7 @@ class LegsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Legs',
+                'Chest',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -71,7 +75,7 @@ class LegsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                '5 Workouts for bignner',
+                '4 Workouts for bignner',
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.green,
@@ -89,12 +93,12 @@ class LegsScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -145,7 +149,7 @@ class LegsScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 6,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 10, left: 10),
@@ -156,7 +160,7 @@ class LegsScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -177,9 +181,9 @@ class LegsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

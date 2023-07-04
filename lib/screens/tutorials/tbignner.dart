@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_workout/exercises/Chest.dart';
+import 'package:gym_workout/exercises/chest.dart';
 
 class TBigner extends StatelessWidget {
   @override

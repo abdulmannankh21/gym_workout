@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import '../exercises/Shoulders.dart';
+import '../exercises/shoulders.dart';
 import '../sizes.dart';
 
 class HomePage extends StatefulWidget {

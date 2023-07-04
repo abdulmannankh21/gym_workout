@@ -1,10 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:gym_workout/screens/Chose_login_suginUp_ofline.dart';
+import 'package:gym_workout/screens/chose_login_suginUp_ofline.dart';
 
-import '../sizes.dart';
-import 'login_signup_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../screens/tutorials/Tadvance.dart';
+import '../screens/tutorials/tadvance.dart';
 import 'Tbignner.dart';
-import 'Tintermediate.dart';
+import 'tintermediate.dart';
 
 class TutorialScreen extends StatelessWidget {
   @override

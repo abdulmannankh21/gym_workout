@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
-import 'package:gym_workout/screens/BottomNavBar.dart';
 import 'package:gym_workout/screens/show_progress.dart';
-
 import '../sizes.dart';
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class ProfGoal extends StatelessWidget {
   static const double _itemHeight = 50;

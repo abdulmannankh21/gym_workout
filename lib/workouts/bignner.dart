@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/exercises/Abs.dart';
-import 'package:gym_workout/exercises/Back.dart';
-import 'package:gym_workout/exercises/Biceps.dart';
-import 'package:gym_workout/exercises/Legs.dart';
-import 'package:gym_workout/exercises/Shoulders.dart';
-import 'package:gym_workout/screens/Bisceps/Biceps1.dart';
-
-import '../exercises/Chest.dart';
-import '../exercises/Triceps.dart';
+import 'package:gym_workout/exercises/abs.dart';
+import 'package:gym_workout/exercises/back.dart';
+import 'package:gym_workout/exercises/biceps.dart';
+import 'package:gym_workout/exercises/legs.dart';
+import 'package:gym_workout/exercises/shoulders.dart';
+import '../exercises/chest.dart';
+import '../exercises/triceps.dart';
 
 class Bigner extends StatelessWidget {
   const Bigner({super.key});
@@ -19,82 +17,203 @@ class Bigner extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: ListView(
+      child: Column(
         children: [
           const SizedBox(
             height: 30,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                   onTap: () {
                     Get.to(ShoulderScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w1.png'))),
-              SizedBox(
-                width: size.width * 0.09,
-              ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/shoulder.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Shoulder",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
               GestureDetector(
                   onTap: () {
                     Get.to(ChestScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w2.png'))),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/chest.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Chest",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
+
             ],
           ),
           SizedBox(
-            height: size.height * 0.07,
+            height: size.height * 0.06,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                   onTap: () {
                     Get.to(BackScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w3.png'))),
-              SizedBox(
-                width: size.width * 0.09,
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(AbsScreen());
-                  },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w4.png'))),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.07,
-          ),
-          Row(
-            children: [
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/wings.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Wings",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
               GestureDetector(
                   onTap: () {
                     Get.to(LegsScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w5.png'))),
-              SizedBox(
-                width: size.width * 0.09,
-              ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/leg.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Legs",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
+            ],
+          ),
+          SizedBox(
+            height: size.height * 0.06,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    Get.to(AbsScreen());
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/abs.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Abs",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
               GestureDetector(
                   onTap: () {
                     Get.to(BicepsScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w6.png'))),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/bicep.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Bicep",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
             ],
           ),
           SizedBox(
-            height: size.height * 0.07,
+            height: size.height * 0.06,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -103,13 +222,31 @@ class Bigner extends StatelessWidget {
                   onTap: () {
                     Get.to(TricepsScreen());
                   },
-                  child: SizedBox(
-                      width: size.width * 0.35,
-                      child: Image.asset('assets/w7.png'))),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/tricep.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0.0,
+                          child: Text(
+                            "Tricep",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
+                    ],
+                  )),
             ],
-          ),
-          SizedBox(
-            height: size.height * 0.07,
           ),
         ],
       ),

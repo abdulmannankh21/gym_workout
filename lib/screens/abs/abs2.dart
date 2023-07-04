@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Abs1 extends StatelessWidget {
-  const Abs1({super.key});
+class Abs2 extends StatelessWidget {
+  const Abs2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Abs1 extends StatelessWidget {
           child: Column(children: [
             Card(
               elevation: 5,
-              child: Container(
+              child: SizedBox(
                 height: size.height * 0.35,
                 width: size.width * 0.96,
                 child: Column(
@@ -36,7 +36,7 @@ class Abs1 extends StatelessWidget {
                       child: SizedBox(
                         height: size.height * 0.28,
                         width: size.width * 0.94,
-                        child: Image.asset('assets/gifs/abs1.gif'),
+                        child: Image.asset('assets/gifs/abs2.gif'),
                       ),
                     ),
                   ],
@@ -56,7 +56,7 @@ class Abs1 extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: Text(
-                'Weighted hanging leg hip raise waist',
+                'Wheel roll out waist fix waist',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -90,7 +90,7 @@ class Abs1 extends StatelessWidget {
                       height: size.height * 0.055,
                     ),
                     const Text(
-                      'Abs, Quadriceps',
+                      'Abs, Shoulders, Back',
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -116,9 +116,10 @@ class Abs1 extends StatelessWidget {
                       height: size.height * 0.02,
                     ),
                     const Text(
-                      'Hang on the bar with hands shoulder width apart and palms facing forward. Hold some weight between your feet and keep your arms extended and legs straight down.'
-                      '\n\n1.	Exhale and squeeze your abs to lift your knees to your chest.'
-                      '\n\n2.	Pause for a count, inhale and return to the starting position slowly and repeat.',
+                      'Put the wheel roller right under your shoulders on the floor. Kneel on the floor and hold the handles of the wheel roller with your arms extended.'
+                      '\n\n1. Inhale and slowly roll the wheel forward until your torso is parallel to the ground.'
+                      '\n\n2.	Pause for a count when your body is fully extended.'
+                      '\n\n3. Exhale and pull the wheel back towards yourself to the starting position and repeat.',
                       style: TextStyle(
                         fontSize: 15,
                       ),

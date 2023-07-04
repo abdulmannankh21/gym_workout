@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/back/Back2.dart';
-import '../screens/back/Back1.dart';
-import '../screens/back/Back3.dart';
-import '../screens/back/Back4.dart';
-import '../screens/back/Back5.dart';
+import 'package:gym_workout/screens/back/back2.dart';
+import '../screens/back/back1.dart';
+import '../screens/back/back3.dart';
+import '../screens/back/back4.dart';
+import '../screens/back/back5.dart';
 
 class BackScreen extends StatelessWidget {
   BackScreen({super.key});
 
-  List imgs = [
+  final  List imgs = [
     'assets/gifs/back1.gif',
     'assets/gifs/back2.gif',
     'assets/gifs/back3.gif',
@@ -17,7 +17,7 @@ class BackScreen extends StatelessWidget {
     'assets/gifs/back5.gif',
   ];
 
-  List titles = [
+   final List titles = [
     'Weighted hanging leg\nhip raise waist',
     'Wheel roll out waist\nfix waist',
     'Lying scissor kicks\nwaist',
@@ -26,7 +26,7 @@ class BackScreen extends StatelessWidget {
     'Hanging leg hip\nraise waist'
   ];
 
-  List screens = const [
+   final List screens = const [
     Back1(),
     Back2(),
     Back3(),
@@ -90,12 +90,12 @@ class BackScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -157,7 +157,7 @@ class BackScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -178,9 +178,9 @@ class BackScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

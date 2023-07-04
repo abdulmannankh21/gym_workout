@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_workout/screens/profile_weight.dart';
 
 import '../sizes.dart';
-import '../widgets/customButton.dart';
+import '../widgets/custombutton.dart';
 
 class ProfAge extends StatelessWidget {
   static const double _itemHeight = 50;

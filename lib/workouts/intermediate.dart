@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/exercises/Biceps.dart';
+import 'package:gym_workout/exercises/biceps.dart';
 
-import '../exercises/Abs.dart';
-import '../exercises/Back.dart';
-import '../exercises/Chest.dart';
-import '../exercises/Legs.dart';
-import '../exercises/Shoulders.dart';
-import '../exercises/Triceps.dart';
+import '../exercises/abs.dart';
+import '../exercises/back.dart';
+import '../exercises/chest.dart';
+import '../exercises/legs.dart';
+import '../exercises/shoulders.dart';
+import '../exercises/triceps.dart';
 
 class Intrmediate extends StatelessWidget {
   @override

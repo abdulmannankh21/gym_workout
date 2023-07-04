@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/customButton.dart';
+import '../../widgets/custombutton.dart';
 
 class ShouldersScreen extends StatelessWidget {
   const ShouldersScreen({super.key});

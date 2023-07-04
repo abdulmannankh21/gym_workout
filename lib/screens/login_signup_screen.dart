@@ -1,66 +1,58 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gym_workout/screens/otp_screen.dart';
-import 'package:gym_workout/screens/profile_setup_age.dart';
-import 'package:gym_workout/widgets/customButton.dart';
-import 'package:gym_workout/widgets/customTextField.dart';
 
-import '../sizes.dart';
+import '../screens/profile_setup_age.dart';
+import '../widgets/custombutton.dart';
+import '../widgets/customtextfield.dart';
 
-class LoginSignUpScreen extends StatefulWidget {
-  var isSignup;
-  LoginSignUpScreen(this.isSignup);
-
-  @override
-  State<LoginSignUpScreen> createState() => _LoginSignUpScreenState();
-}
-
-class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
-  bool isSelected = true;
+class LoginSignUpController extends GetxController {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
   Future<void> signUp() async {
-    final email = emailController.text.trim();
-    final password = passwordController.text.trim();
-    final confirmPassword = confirmPasswordController.text.trim();
+    final name = nameController.text;
+    final email = emailController.text;
+    final password = passwordController.text;
 
-    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-      // Show an error message to the user indicating that all fields are required
-      return;
-    }
-
-    if (password != confirmPassword) {
-      // Show an error message to the user indicating that passwords do not match
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
       return;
     }
 
     try {
       final userCredential = await signUpWithEmailAndPassword(email, password);
+      await storeUserCredentials(
+          userCredential.user!.uid, name, email, password);
 
-      // Store email and password in Firestore
-      await storeUserCredentials(userCredential.user!.uid, email, password);
 
-      // Send email verification
-      await userCredential.user!.sendEmailVerification();
 
-      // Navigate to OTP screen
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => LoginSignUpScreen(false)));
+      // Show snackbar message
+      Get.snackbar(
+        'Account Created',
+        'Your account has been successfully created!',
+        snackPosition: SnackPosition.TOP,
+        backgroundGradient:  LinearGradient(
+          colors: [Colors.blue, Colors.green],
+
+        ),
+        colorText: Colors.green
+      );
+
+      // Navigate back to the signup screen
+      Get.offAll(() => LoginSignUpScreen(isSignup: true));
+
     } catch (e) {
-      // Handle signup errors
       print('Signup Error: $e');
-      // Show an error message to the user or handle the error appropriately
     }
   }
 
-  Future<UserCredential> signUpWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential> signUpWithEmailAndPassword(
+      String email, String password) async {
     try {
       final userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -72,15 +64,16 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
     }
   }
 
-  Future<void> storeUserCredentials(String uid, String email, String password) async {
+  Future<void> storeUserCredentials(
+      String uid, String name, String email, String password) async {
     try {
       await _firestore.collection('users').doc(uid).set({
+        'name': name,
         'email': email,
         'password': password,
       });
     } catch (e) {
       print('Firestore Error: $e');
-      // Show an error message to the user or handle the error appropriately
     }
   }
 
@@ -89,7 +82,6 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
     final password = passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      // Show an error message to the user indicating that all fields are required
       return;
     }
 
@@ -98,26 +90,51 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
         email: email,
         password: password,
       );
-
-      if (userCredential.user!.emailVerified) {
-        // Navigate to profile setup age screen
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProfAge()),
+      if (userCredential.user != null) {
+        Get.snackbar(
+          'Login Success',
+          'You have successfully logged in!',
+          snackPosition: SnackPosition.TOP,
+          backgroundGradient:  LinearGradient(
+            colors: [Colors.blue, Colors.green],
+          ),
+          colorText: Colors.green,
         );
+        Get.off(() => ProfAge());
       } else {
-        // Show a message to the user to verify their email first
-        print('Email not verified');
+        Get.snackbar(
+          'Login Failed',
+          'Invalid email or password. Please try again.',
+          snackPosition: SnackPosition.TOP,
+         backgroundGradient:  LinearGradient(
+           colors: [Colors.blue, Colors.green],
+         ),
+          colorText: Colors.red,
+        );
       }
     } catch (e) {
-      // Handle login errors
       print('Login Error: $e');
-      // Show an error message to the user or handle the error appropriately
+      Get.snackbar(
+        'Login Error',
+        'An error occurred during login. Please try again.',
+        snackPosition: SnackPosition.TOP,
+        backgroundGradient:  LinearGradient(
+          colors: [Colors.blue, Colors.green],
+        ),
+      );
     }
   }
 
+}
+
+class LoginSignUpScreen extends GetView<LoginSignUpController> {
+  final bool isSignup;
+
+  LoginSignUpScreen({this.isSignup = true});
+
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginSignUpController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -150,27 +167,11 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        widget.isSignup = false;
-                      });
-                    },
-                    child: const Text(
-                      "SignUp",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 60,
               ),
               Center(
-                child: widget.isSignup
+                child: isSignup
                     ? const Text(
                   "Log In",
                   style: TextStyle(
@@ -189,25 +190,25 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
               const SizedBox(
                 height: 160,
               ),
-              widget.isSignup
+              isSignup
                   ? Column(
                 children: [
                   CustomTextField(
-                    controller: emailController,
+                    controller: controller.emailController,
                     label: 'Email',
-                    keyboardtype: TextInputType.text,
-                    hinttxt: "   Email",
+                    hinttxt: 'Enter your Email',
+                    keyboardtype: TextInputType.emailAddress,
                     isobsecure: false,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomTextField(
-                    controller: passwordController,
+                    controller: controller.passwordController,
                     label: 'Password',
-                    keyboardtype: TextInputType.text,
-                    hinttxt: "   Password",
+                    hinttxt: 'Enter your Password',
                     isobsecure: true,
+                    keyboardtype: TextInputType.visiblePassword,
                   ),
                   const SizedBox(
                     height: 20,
@@ -216,10 +217,10 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                     height: 20,
                   ),
                   CustomButton(
-                    txt: "LogIn",
-                    width: AppSizes.width! * 0.5,
-                    hight: AppSizes.height! * 0.05,
-                    onPressed: login,
+                    txt: "Login",
+                    width: Get.width * 0.5,
+                    hight: Get.height * 0.05,
+                    onPressed: controller.login,
                     margin: EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -227,36 +228,36 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                       ),
                       borderRadius: BorderRadius.circular(40),
                     ),
-                  )
+                  ),
                 ],
               )
                   : Column(
                 children: [
                   CustomTextField(
-                    controller: emailController,
-                    label: 'Email',
+                    controller: controller.nameController,
+                    label: 'Name',
+                    hinttxt: 'Enter your Name',
+                    isobsecure: false,
                     keyboardtype: TextInputType.text,
-                    hinttxt: "   Email",
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    controller: controller.emailController,
+                    label: 'Email',
+                    hinttxt: 'Enter your Email',
+                    keyboardtype: TextInputType.emailAddress,
                     isobsecure: false,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomTextField(
-                    controller: passwordController,
+                    controller: controller.passwordController,
                     label: 'Password',
-                    keyboardtype: TextInputType.text,
-                    hinttxt: "   Password",
-                    isobsecure: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextField(
-                    controller: confirmPasswordController,
-                    label: 'Confirm Password',
-                    keyboardtype: TextInputType.text,
-                    hinttxt: "   Confirm Password",
+                    hinttxt: 'Enter your Password',
+                    keyboardtype: TextInputType.visiblePassword,
                     isobsecure: true,
                   ),
                   const SizedBox(
@@ -264,9 +265,9 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                   ),
                   CustomButton(
                     txt: "SignUp",
-                    width: AppSizes.width! * 0.5,
-                    hight: AppSizes.height! * 0.05,
-                    onPressed: signUp,
+                    width: Get.width * 0.5,
+                    hight: Get.height * 0.05,
+                    onPressed: controller.signUp,
                     margin: EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -274,7 +275,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                       ),
                       borderRadius: BorderRadius.circular(40),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],

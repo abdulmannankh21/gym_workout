@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/customButton.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

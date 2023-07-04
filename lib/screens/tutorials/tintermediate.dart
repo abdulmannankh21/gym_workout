@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../exercises/Chest.dart';
+import '../../exercises/chest.dart';
 
 class TIntrmediate extends StatelessWidget {
   @override

@@ -1,40 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../screens/shoulders/Sho1.dart';
-import '../screens/shoulders/Sho2.dart';
-import '../screens/shoulders/Sho3.dart';
-import '../screens/shoulders/Sho4.dart';
-import '../screens/shoulders/Sho5.dart';
-import '../screens/shoulders/Sho6.dart';
+import 'package:gym_workout/screens/abs/abs1.dart';
+import 'package:gym_workout/screens/abs/abs3.dart';
+import 'package:gym_workout/screens/abs/abs5.dart';
+import 'package:gym_workout/screens/abs/abs6.dart';
 
-class ShoulderScreen extends StatelessWidget {
-  ShoulderScreen({super.key});
 
-  List imgs = [
-    'assets/gifs/sho1.gif',
-    'assets/gifs/sho2.gif',
-    'assets/gifs/sho3.gif',
-    'assets/gifs/sho4.gif',
-    'assets/gifs/sho5.gif',
-    'assets/gifs/sho6.gif'
+import '../screens/abs/abs2.dart';
+import '../screens/abs/abs4.dart';
+
+class AbsScreen extends StatelessWidget {
+
+  AbsScreen({super.key});
+
+  final  List imgs = [
+    'assets/gifs/abs1.gif',
+    'assets/gifs/abs2.gif',
+    'assets/gifs/abs3.gif',
+    'assets/gifs/abs4.gif',
+    'assets/gifs/abs5.gif',
+    'assets/gifs/abs6.gif'
   ];
 
-  List titles = [
-    'Barbell standing wide\nmilitary press shoulders',
-    'Dubmbbell seated shoulder\npress shoulders',
-    'Dumbbell front rise\nshoulders',
-    'Dunmbell rear fly\nshoulders',
-    'Dumbbell lateral rise\nshoulders',
-    'Dunmbbell upright row\nshoulders'
+    final List titles = [
+    'Weighted hanging leg\nhip raise waist',
+    'Wheel roll out waist\nfix waist',
+    'Lying scissor kicks\nwaist',
+    'Seated leg raise\nwaist',
+    'Incline leg hip raise\neg straight waist',
+    'Hanging leg hip\nraise waist'
   ];
 
-  List screens = const [
-    Sho1(),
-    Sho2(),
-    Sho3(),
-    Sho4(),
-    Sho5(),
-    Sho6(),
+   final List screens = const [
+    Abs1(),
+    Abs2(),
+    Abs3(),
+    Abs4(),
+    Abs5(),
+    Abs6(),
   ];
 
   @override
@@ -47,7 +50,7 @@ class ShoulderScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Shoulders',
+            'Abs',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -65,7 +68,7 @@ class ShoulderScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Shoulders',
+                'Abs',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -93,12 +96,12 @@ class ShoulderScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -160,7 +163,7 @@ class ShoulderScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -181,9 +184,9 @@ class ShoulderScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

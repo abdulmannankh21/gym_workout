@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../screens/triceps/Tri1.dart';
-import '../screens/triceps/Tri2.dart';
-import '../screens/triceps/Tri3.dart';
-import '../screens/triceps/Tri4.dart';
-import '../screens/triceps/Tri5.dart';
-import '../screens/triceps/Tri6.dart';
+import '../screens/shoulders/sho1.dart';
+import '../screens/shoulders/sho2.dart';
+import '../screens/shoulders/sho3.dart';
+import '../screens/shoulders/sho4.dart';
+import '../screens/shoulders/sho5.dart';
+import '../screens/shoulders/sho6.dart';
 
-class TricepsScreen extends StatelessWidget {
-  TricepsScreen({super.key});
+class ShoulderScreen extends StatelessWidget {
+  ShoulderScreen({super.key});
 
-  List imgs = [
-    'assets/gifs/tri1.gif',
-    'assets/gifs/tri2.gif',
-    'assets/gifs/tri3.gif',
-    'assets/gifs/tri4.gif',
-    'assets/gifs/tri5.gif',
-    'assets/gifs/tri6.gif'
+  final List imgs = [
+    'assets/gifs/sho1.gif',
+    'assets/gifs/sho2.gif',
+    'assets/gifs/sho3.gif',
+    'assets/gifs/sho4.gif',
+    'assets/gifs/sho5.gif',
+    'assets/gifs/sho6.gif'
   ];
 
-  List titles = [
-    'Bench reverse dips\nupper arms',
-    'One hand triceps kick\nback upper arms',
-    'Ez bar lying close grip\ntriceps extension behind\nhead',
-    'Cable triceps push\ndown upper arms',
-    'Cable high pulley\noverhead triceps ',
-    'Barbell decline close\ngrip to skull press\nupper arms'
+  final List titles = [
+    'Barbell standing wide\nmilitary press shoulders',
+    'Dubmbbell seated shoulder\npress shoulders',
+    'Dumbbell front rise\nshoulders',
+    'Dunmbell rear fly\nshoulders',
+    'Dumbbell lateral rise\nshoulders',
+    'Dunmbbell upright row\nshoulders'
   ];
 
-  List screens = const [
-    Tri1(),
-    Tri2(),
-    Tri3(),
-    Tri4(),
-    Tri5(),
-    Tri6(),
+  final List screens = const [
+    Sho1(),
+    Sho2(),
+    Sho3(),
+    Sho4(),
+    Sho5(),
+    Sho6(),
   ];
 
   @override
@@ -47,7 +47,7 @@ class TricepsScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Triceps',
+            'Shoulders',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -65,7 +65,7 @@ class TricepsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Triceps',
+                'Shoulders',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -93,12 +93,12 @@ class TricepsScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -160,7 +160,7 @@ class TricepsScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -181,9 +181,9 @@ class TricepsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

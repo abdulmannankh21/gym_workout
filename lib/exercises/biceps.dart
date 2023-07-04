@@ -1,46 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/Bisceps/Biceps1.dart';
-import 'package:gym_workout/screens/abs/Abs1.dart';
-import 'package:gym_workout/screens/abs/Abs3.dart';
-import 'package:gym_workout/screens/abs/Abs5.dart';
-import 'package:gym_workout/screens/abs/Abs6.dart';
-import 'package:gym_workout/screens/bisceps/Cable_CloseGrip_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Ez_Barbel_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Rope_Biceps_Screen.dart';
-import 'package:gym_workout/screens/bisceps/Standing_Dumbbel_Screen.dart';
+import 'package:gym_workout/screens/Bisceps/biceps1.dart';
+import 'package:gym_workout/screens/bisceps/cable_closegrip_screen.dart';
+import 'package:gym_workout/screens/bisceps/ez_barbel_screen.dart';
+import 'package:gym_workout/screens/bisceps/rope_biceps_screen.dart';
+import 'package:gym_workout/screens/bisceps/standing_dumbbel_screen.dart';
 
-import '../screens/abs/Abs2.dart';
-import '../screens/abs/Abs4.dart';
+class BicepsScreen extends StatelessWidget {
+  BicepsScreen({super.key});
 
-class AbsScreen extends StatelessWidget {
-  AbsScreen({super.key});
-
-  List imgs = [
-    'assets/gifs/abs1.gif',
-    'assets/gifs/abs2.gif',
-    'assets/gifs/abs3.gif',
-    'assets/gifs/abs4.gif',
-    'assets/gifs/abs5.gif',
-    'assets/gifs/abs6.gif'
+  final List imgs = [
+    'assets/gifs/bi1.gif',
+    'assets/gifs/bi2.gif',
+    'assets/gifs/bi3.gif',
+    'assets/gifs/bi4.gif',
+    'assets/gifs/bi5.gif',
   ];
 
-  List titles = [
-    'Weighted hanging leg\nhip raise waist',
-    'Wheel roll out waist\nfix waist',
-    'Lying scissor kicks\nwaist',
-    'Seated leg raise\nwaist',
-    'Incline leg hip raise\neg straight waist',
-    'Hanging leg hip\nraise waist'
+  final List titles = [
+    'Dumbbell alternate preacher\ncurls ',
+    'Standing dumbbell biceps\ncurl',
+    'Rope biceps Hammer\ncurl ',
+    'Ez barbell close grip\npreacher curl ',
+    'Cable close grip\ncurl '
   ];
 
-  List screens = const [
-    Abs1(),
-    Abs2(),
-    Abs3(),
-    Abs4(),
-    Abs5(),
-    Abs6(),
+  final List screens = const [
+    Biceps1(),
+    Biceps2(),
+    Biceps3(),
+    Biceps4(),
+    Biceps5(),
   ];
 
   @override
@@ -53,7 +43,7 @@ class AbsScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Abs',
+            'Biceps',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -71,7 +61,7 @@ class AbsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Abs',
+                'Biceps',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -81,7 +71,7 @@ class AbsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                '6 Workouts for bignner',
+                '5 Workouts for bignner',
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.green,
@@ -99,12 +89,12 @@ class AbsScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -155,7 +145,7 @@ class AbsScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: 6,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 10, left: 10),
@@ -166,7 +156,7 @@ class AbsScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -187,9 +177,9 @@ class AbsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(

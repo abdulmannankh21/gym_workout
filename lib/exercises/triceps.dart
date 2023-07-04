@@ -1,43 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/chest/Chest4.dart';
-import 'package:video_player/video_player.dart';
+import '../screens/triceps/tri1.dart';
+import '../screens/triceps/tri2.dart';
+import '../screens/triceps/tri3.dart';
+import '../screens/triceps/tri4.dart';
+import '../screens/triceps/tri5.dart';
+import '../screens/triceps/tri6.dart';
 
-import '../screens/chest/Chest1.dart';
-import '../screens/chest/Chest2.dart';
-import '../screens/chest/Chest3.dart';
-import '../screens/chest/Chest5.dart';
-import '../screens/chest/Chest6.dart';
-import '../widgets/customButton.dart';
+class TricepsScreen extends StatelessWidget {
+  TricepsScreen({super.key});
 
-class ChestScreen extends StatelessWidget {
-  ChestScreen({super.key});
-
-  List imgs = [
-    'assets/gifs/chest1.gif',
-    'assets/gifs/chest2.gif',
-    'assets/gifs/chest3.gif',
-    'assets/gifs/chest4.gif',
-    'assets/gifs/chest5.gif',
-    'assets/gifs/chest6.gif'
+  final List imgs = [
+    'assets/gifs/tri1.gif',
+    'assets/gifs/tri2.gif',
+    'assets/gifs/tri3.gif',
+    'assets/gifs/tri4.gif',
+    'assets/gifs/tri5.gif',
+    'assets/gifs/tri6.gif'
   ];
 
-  List titles = [
-    'Barbell Bench Press',
-    'Dumbbell Bench Press',
-    'Dumbbell Fly Press',
-    'Dumbbell Decline Bench Press',
-    'Barbell Incline Bench Press',
-    'Dumbbell Decline Fly'
+  final List titles = [
+    'Bench reverse dips\nupper arms',
+    'One hand triceps kick\nback upper arms',
+    'Ez bar lying close grip\ntriceps extension behind\nhead',
+    'Cable triceps push\ndown upper arms',
+    'Cable high pulley\noverhead triceps ',
+    'Barbell decline close\ngrip to skull press\nupper arms'
   ];
 
-  List screens = const [
-    Chest1(),
-    Chest2(),
-    Chest3(),
-    Chest4(),
-    Chest5(),
-    Chest6(),
+  final List screens = const [
+    Tri1(),
+    Tri2(),
+    Tri3(),
+    Tri4(),
+    Tri5(),
+    Tri6(),
   ];
 
   @override
@@ -50,7 +47,7 @@ class ChestScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: const Text(
-            'Chest',
+            'Triceps',
             style: TextStyle(
                 fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -68,7 +65,7 @@ class ChestScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                'Chest',
+                'Triceps',
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
@@ -78,7 +75,7 @@ class ChestScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
-                '4 Workouts for bignner',
+                '6 Workouts for bignner',
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.green,
@@ -96,12 +93,12 @@ class ChestScreen extends StatelessWidget {
                     color: const Color.fromARGB(96, 110, 108, 108),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.play_arrow_rounded,
                             color: Colors.white,
@@ -163,7 +160,7 @@ class ChestScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: size.height * 0.1,
                                 width: size.width * 0.3,
                                 child: Image.asset(
@@ -184,9 +181,9 @@ class ChestScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                subtitle: Column(
+                                subtitle: const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "00:10",
                                       style: TextStyle(
