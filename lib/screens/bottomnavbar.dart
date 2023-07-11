@@ -20,7 +20,7 @@ class _MyNavBarState extends State<MyNavBar> {
     const HomePage(),
     const WorkoutScreen(),
     const RecipeScreen(),
-    const SettingsScreen()
+     SettingsScreen()
   ];
   @override
   Widget build(BuildContext context) {

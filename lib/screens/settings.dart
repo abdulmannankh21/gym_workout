@@ -1,12 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gym_workout/screens/login_signup_screen.dart';
-import 'package:gym_workout/screens/profile_edit.dart';
-
-import '../widgets/custombutton.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'login_signup_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  final SettingsController _settingsController = Get.put(SettingsController());
+
+  SettingsScreen({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,176 +23,259 @@ class SettingsScreen extends StatelessWidget {
           title: const Text(
             'Settings',
             style: TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 250),
-                child: CustomButton(
-                    txt: "Edit",
-                    width: 170,
-                    hight: 45,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EditProfileScreen()));
-                    },
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.blue, Colors.green],
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Image.asset('assets/Profile Picture.png'),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Obx(
+                              () {
+                            final name = _settingsController.name.value;
+                            return Text(
+                              name,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          },
                         ),
-                        borderRadius: BorderRadius.circular(40))),
-              ),
-              Row(
-                children: [
-                  Image.asset('assets/Profile Picture.png'),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Jalex Simpson',
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Profile',
-                        style: TextStyle(
+                        Text(
+                          _settingsController.exerciseLevel.value,
+                          style: TextStyle(
                             fontSize: 18,
                             color: Colors.green,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                'Account Prefrences',
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    'Password',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.2,
-                  ),
-                  const Text(
-                    '********',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    'Email',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.2,
-                  ),
-                  const Text(
-                    'anything@gmail.com',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                'Delete My Account',
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.defaultDialog(
-                    title: 'Are you sure?',
-                    content: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          style: ElevatedButton.styleFrom(
-                              elevation: 1,
-                              textStyle: const TextStyle(color: Colors.black)),
-                          child: const Text('No'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.off(LoginSignUpScreen(isSignup:true));
-                          },
-                          style: ElevatedButton.styleFrom(
-                              elevation: 1,
-                              backgroundColor: Colors.red,
-                              textStyle: const TextStyle(color: Colors.white)),
-                          child: const Text('Yes'),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
-                  );
-                },
-                child: const Text(
-                  'LogOut',
-                  style: TextStyle(
+                  ],
+                ),
+
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Weight',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Obx(
+                          () {
+                        final email = _settingsController.weight.value;
+                        return Text(
+                          email,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Age',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Obx(
+                          () {
+                        final email = _settingsController.age.value;
+                        return Text(
+                          email,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Goal',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      _settingsController.goal.value,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Email',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Obx(
+                          () {
+                        final email = _settingsController.email.value;
+                        return Text(
+                          email,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _settingsController.logout;
+                    // Get.defaultDialog(
+                    //   title: 'Are you sure?',
+                    //   content: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //     children: [
+                    //       ElevatedButton(
+                    //         onPressed: () {
+                    //           Get.back();
+                    //         },
+                    //         style: ElevatedButton.styleFrom(
+                    //           elevation: 1,
+                    //           textStyle: const TextStyle(color: Colors.black),
+                    //         ),
+                    //         child: const Text('No'),
+                    //       ),
+                    //       ElevatedButton(
+                    //         onPressed: _settingsController.logout,
+                    //         style: ElevatedButton.styleFrom(
+                    //           elevation: 1,
+                    //           backgroundColor: Colors.red,
+                    //           textStyle: const TextStyle(color: Colors.white),
+                    //         ),
+                    //         child: const Text('Yes'),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // );
+                  },
+                  child:  Text(
+                    'Logout',
+                    style: TextStyle(
                       fontSize: 24,
                       color: Colors.green,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+}
+
+class SettingsController extends GetxController {
+  final name = ''.obs;
+  final age = ''.obs;
+  final weight = ''.obs;
+  final exerciseLevel = ''.obs;
+  final goal = ''.obs;
+  final email = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchData(); // Call the method to fetch user data on initialization
+  }
+  void logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => LoginSignUpScreen(isSignup: true));
+    } catch (e) {
+      print('Logout Error: $e');
+    }
+  }
+  Future<void> fetchData() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final userId = user.uid;
+        final snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        final userData = snapshot.data();
+        if (userData != null) {
+          name.value = userData['name'] ?? '';
+          age.value = userData['age'] ?? '';
+          weight.value = userData['weight'] ?? '';
+          exerciseLevel.value = userData['exercise_level'] ?? '';
+          goal.value = userData['goal'] ?? '';
+          email.value = userData['email'] ?? '';
+        }
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+    }
   }
 }
