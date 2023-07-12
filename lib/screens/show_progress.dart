@@ -4,7 +4,7 @@ import 'package:gym_workout/screens/bottomnavbar.dart';
 
 import '../sizes.dart';
 import '../widgets/custombutton.dart';
-
+import 'package:get/get.dart';
 class Progressbar extends StatefulWidget {
   const Progressbar({super.key});
 
@@ -53,12 +53,12 @@ class _ProgressbarState extends State<Progressbar> {
                   child: CircleProgressBar(
                     foregroundColor: Colors.green,
                     backgroundColor: Colors.grey,
-                    value: 0.8,
+                    value: 1.0,
                     child: Center(
                       child: AnimatedCount(
                         style: TextStyle(color: Colors.white),
                         fractionDigits: 0,
-                        count: 90,
+                        count: 100,
                         unit: '%',
                         duration: Duration(milliseconds: 500),
                       ),
@@ -73,10 +73,7 @@ class _ProgressbarState extends State<Progressbar> {
                     width: AppSizes.width! * 0.5,
                     hight: AppSizes.height! * 0.05,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyNavBar()));
+                      Get.offAll(const MyNavBar());
                     },
                     margin: const EdgeInsets.all(30),
                     decoration: BoxDecoration(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:gym_workout/screens/show_progress.dart';
@@ -79,6 +81,12 @@ class ProfGoal extends StatelessWidget {
                   perspective: 0.002,
                   onSelectedItemChanged: (index) {
                     print("onSelectedItemChanged index: $index");
+                    String uid = FirebaseAuth.instance.currentUser!.uid;
+                    // Save the selected age value to Firestore
+                    FirebaseFirestore.instance
+                        .collection('users') // Assuming 'users' is the collection name
+                        .doc(uid) // Replace 'userID' with the actual user ID
+                        .update({'goal': level[index]});
                   },
                   childDelegate: ListWheelChildBuilderDelegate(
                     builder: (context, index) {

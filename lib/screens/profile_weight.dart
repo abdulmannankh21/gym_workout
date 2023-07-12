@@ -1,4 +1,6 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_workout/screens/profile_exercise_level.dart';
 
@@ -35,9 +37,10 @@ class ProfWeight extends StatelessWidget {
     '68 kg',
     '69 kg',
     '70 kg',
-    '70 -75 kg',
+    '70-75 kg',
     '75-80 kg',
-    '80+ kg',
+    '80-90 kg',
+    '100+ kg',
   ];
   final _scrollController = FixedExtentScrollController();
 
@@ -100,6 +103,7 @@ class ProfWeight extends StatelessWidget {
                 itemCount: weight.length,
                 onItemTapCallback: (index) {
                   print("onItemTapCallback index: $index");
+
                 },
                 child: ListWheelScrollView.useDelegate(
                   controller: _scrollController,
@@ -109,6 +113,12 @@ class ProfWeight extends StatelessWidget {
                   perspective: 0.002,
                   onSelectedItemChanged: (index) {
                     print("onSelectedItemChanged index: $index");
+                    String uid = FirebaseAuth.instance.currentUser!.uid;
+                    // Save the selected age value to Firestore
+                    FirebaseFirestore.instance
+                        .collection('users') // Assuming 'users' is the collection name
+                        .doc(uid) // Replace 'userID' with the actual user ID
+                        .update({'weight': weight[index]});
                   },
                   childDelegate: ListWheelChildBuilderDelegate(
                       builder: (context, index) {

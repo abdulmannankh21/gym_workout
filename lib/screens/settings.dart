@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gym_workout/screens/chose_login_suginUp_ofline.dart';
 import 'login_signup_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -186,34 +187,35 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _settingsController.logout;
-                    // Get.defaultDialog(
-                    //   title: 'Are you sure?',
-                    //   content: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //     children: [
-                    //       ElevatedButton(
-                    //         onPressed: () {
-                    //           Get.back();
-                    //         },
-                    //         style: ElevatedButton.styleFrom(
-                    //           elevation: 1,
-                    //           textStyle: const TextStyle(color: Colors.black),
-                    //         ),
-                    //         child: const Text('No'),
-                    //       ),
-                    //       ElevatedButton(
-                    //         onPressed: _settingsController.logout,
-                    //         style: ElevatedButton.styleFrom(
-                    //           elevation: 1,
-                    //           backgroundColor: Colors.red,
-                    //           textStyle: const TextStyle(color: Colors.white),
-                    //         ),
-                    //         child: const Text('Yes'),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // );
+                    Get.defaultDialog(
+                      title: 'Are you sure?',
+                      content: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              elevation: 1,
+                              textStyle: const TextStyle(color: Colors.black),
+                            ),
+                            child: const Text('No'),
+                          ),
+                          ElevatedButton(
+                            onPressed:(){
+                              _settingsController.signOutUser();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              elevation: 1,
+                              backgroundColor: Colors.red,
+                              textStyle: const TextStyle(color: Colors.white),
+                            ),
+                            child: const Text('Yes'),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   child:  Text(
                     'Logout',
@@ -246,14 +248,17 @@ class SettingsController extends GetxController {
     super.onInit();
     fetchData(); // Call the method to fetch user data on initialization
   }
-  void logout() async {
+  void signOutUser() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Get.offAll(() => LoginSignUpScreen(isSignup: true));
+      Get.offAll(() => ChoseLoginOfline());
+      // Successful logout
     } catch (e) {
-      print('Logout Error: $e');
+      print('Error logging out: $e');
+      // Handle any errors that occur during logout
     }
   }
+
   Future<void> fetchData() async {
     try {
       final user = FirebaseAuth.instance.currentUser;
