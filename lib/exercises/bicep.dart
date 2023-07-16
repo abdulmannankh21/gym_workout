@@ -1,40 +1,43 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../screens/triceps/tri1.dart';
-import '../screens/triceps/tri2.dart';
-import '../screens/triceps/tri3.dart';
-import '../screens/triceps/tri4.dart';
-import '../screens/triceps/tri5.dart';
-import '../screens/triceps/tri6.dart';
+import 'package:gym_workout/screens/Bisceps/biceps1.dart';
+import 'package:gym_workout/screens/bisceps/cable_closegrip_screen.dart';
+import 'package:gym_workout/screens/bisceps/ez_barbel_screen.dart';
+import 'package:gym_workout/screens/bisceps/rope_biceps_screen.dart';
+import 'package:gym_workout/screens/bisceps/standing_dumbbel_screen.dart';
 
-class TricepsScreen extends StatelessWidget {
-  TricepsScreen({super.key});
+class BicepScreen extends StatefulWidget {
+  BicepScreen({super.key});
 
+  @override
+  State<BicepScreen> createState() => _BicepScreenState();
+}
+
+class _BicepScreenState extends State<BicepScreen> {
+  var _currentIndex = 0;
   final List imgs = [
-    'assets/gifs/tri1.gif',
-    'assets/gifs/tri2.gif',
-    'assets/gifs/tri3.gif',
-    'assets/gifs/tri4.gif',
-    'assets/gifs/tri5.gif',
-    'assets/gifs/tri6.gif'
+    'assets/gifs/bi1.gif',
+    'assets/gifs/bi2.gif',
+    'assets/gifs/bi3.gif',
+    'assets/gifs/bi4.gif',
+    'assets/gifs/bi5.gif',
   ];
 
   final List titles = [
-    'Bench reverse dips\nupper arms',
-    'One hand triceps kick\nback upper arms',
-    'Ez bar lying close grip\ntriceps extension behind\nhead',
-    'Cable triceps push\ndown upper arms',
-    'Cable high pulley\noverhead triceps ',
-    'Barbell decline close\ngrip to skull press\nupper arms'
+    'Dumbbell alternate preacher\ncurls ',
+    'Standing dumbbell biceps\ncurl',
+    'Rope biceps Hammer\ncurl ',
+    'Ez barbell close grip\npreacher curl ',
+    'Cable close grip\ncurl '
   ];
 
   final List screens =  [
-    Tri1(),
-    Tri2(),
-    Tri3(),
-    Tri4(),
-    Tri5(),
-    Tri6(),
+    Biceps1(),
+    Biceps2(),
+    Biceps3(),
+    Biceps4(),
+    Biceps5(),
   ];
 
   @override
@@ -43,32 +46,61 @@ class TricepsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          title: const Text(
-            'Triceps',
-            style: TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-                height: size.height * 0.25,
-                width: size.width * 1,
-                child: Image.asset(
-                  'assets/sh.png',
-                  fit: BoxFit.fill,
-                )),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 300,
+// Adjust the height as per your requirement
+                initialPage: 0,
+// Set the initial page
+                enableInfiniteScroll: true,
+// Allow infinite scroll
+                autoPlay: true,
+// Enable auto-play
+                autoPlayInterval: Duration(seconds: 3),
+// Set auto-play interval
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+// Set animation duration
+                autoPlayCurve: Curves.fastOutSlowIn,
+// Set animation curve
+                enlargeCenterPage: true,
+// Increase the size of the center item
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+              items: imgs.map((imageUrl) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          image: DecorationImage(
+                            image: AssetImage(imageUrl),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Triceps',
+                    'Biceps',
                     style: TextStyle(
                         fontSize: 50,
                         color: Colors.white.withOpacity(0.3),
@@ -80,7 +112,7 @@ class TricepsScreen extends StatelessWidget {
             // const Padding(
             //   padding: EdgeInsets.only(left: 10),
             //   child: Text(
-            //     '6 Workouts for bignner',
+            //     '5 Workouts for bignner',
             //     style: TextStyle(
             //         fontSize: 16,
             //         color: Colors.green,
@@ -144,9 +176,9 @@ class TricepsScreen extends StatelessWidget {
             // ),
             const Padding(
               padding:
-                  EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
+              EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
               child: Text(
-                'Want your body to be healthy. Join our program with directions according to body’s goals. Increasing physical strength is the goal of strenght training. Maintain body fitness by doing physical exercise at least 2-3 times a week. ',
+                'Want your body to be healthy. Join our program with directions according to body’s goals.Follow Below list of Exercises For Today',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -154,8 +186,8 @@ class TricepsScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                  itemCount: 6,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(20),
@@ -181,7 +213,7 @@ class TricepsScreen extends StatelessWidget {
                                       titles[index],
                                       softWrap: true,
                                       style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),

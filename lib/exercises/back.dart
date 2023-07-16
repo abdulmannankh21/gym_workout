@@ -26,7 +26,7 @@ class BackScreen extends StatelessWidget {
     'Hanging leg hip\nraise waist'
   ];
 
-   final List screens = const [
+   final List screens =  [
     Back1(),
     Back2(),
     Back3(),

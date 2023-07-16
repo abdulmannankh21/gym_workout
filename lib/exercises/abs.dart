@@ -31,7 +31,7 @@ class AbsScreen extends StatelessWidget {
     'Hanging leg hip\nraise waist'
   ];
 
-   final List screens = const [
+   final List screens =  [
     Abs1(),
     Abs2(),
     Abs3(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/profile_setup_age.dart';
 import '../widgets/custombutton.dart';
@@ -10,6 +11,7 @@ import '../widgets/customtextfield.dart';
 class LoginSignUpController extends GetxController {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+  final _preferences = SharedPreferences.getInstance();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -106,6 +108,8 @@ class LoginSignUpController extends GetxController {
             ),
             colorText: Colors.green,
           );
+          final prefs = await _preferences;
+          prefs.setBool('isLoggedIn', true);
           Get.off(() => ProfAge());
         } else {
           Get.snackbar(

@@ -19,7 +19,7 @@ class _MyNavBarState extends State<MyNavBar> {
   final _pageOptions = [
     const HomePage(),
     const WorkoutScreen(),
-    const RecipeScreen(),
+     RecipeScreen(),
      SettingsScreen()
   ];
   @override

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gym_workout/preference_controller.dart';
 
 class Abs1 extends StatelessWidget {
-  const Abs1({super.key});
+   Abs1({super.key});
+  final PreferenceController prefsController = Get.put(PreferenceController());
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -57,12 +60,21 @@ class Abs1 extends StatelessWidget {
           SizedBox(
             height: size.height * 0.01,
           ),
-          // const Text(
-          //   '4 Sets x 12 Reps',
-          //   style: TextStyle(
-          //     fontSize: 20,
-          //   ),
-          // ),
+          prefsController.isloggedin ?
+           Column(
+             children: [
+               Text(
+                'Reps: ${prefsController.reps}',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+          ),
+               Text("Repition:${prefsController.repetitions}",style: TextStyle(
+                 fontSize: 20,
+               ),),
+             ],
+           ):SizedBox(),
+
           SizedBox(
             height: size.height * 0.02,
           ),

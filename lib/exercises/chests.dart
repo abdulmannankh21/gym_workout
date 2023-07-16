@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gym_workout/screens/chest/chest4.dart';
@@ -7,9 +8,15 @@ import '../screens/chest/chest3.dart';
 import '../screens/chest/chest5.dart';
 import '../screens/chest/chest6.dart';
 
-class ChestScreen extends StatelessWidget {
-  ChestScreen({super.key});
+class ChestsScreen extends StatefulWidget {
+  ChestsScreen({super.key});
 
+  @override
+  State<ChestsScreen> createState() => _ChestsScreenState();
+}
+
+class _ChestsScreenState extends State<ChestsScreen> {
+  var _currentIndex = 0;
   final List imgs = [
     'assets/gifs/chest1.gif',
     'assets/gifs/chest2.gif',
@@ -43,25 +50,54 @@ class ChestScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          title: const Text(
-            'Chest',
-            style: TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-                height: size.height * 0.25,
-                width: size.width * 1,
-                child: Image.asset(
-                  'assets/sh.png',
-                  fit: BoxFit.fill,
-                )),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 300,
+// Adjust the height as per your requirement
+                initialPage: 0,
+// Set the initial page
+                enableInfiniteScroll: true,
+// Allow infinite scroll
+                autoPlay: true,
+// Enable auto-play
+                autoPlayInterval: Duration(seconds: 3),
+// Set auto-play interval
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+// Set animation duration
+                autoPlayCurve: Curves.fastOutSlowIn,
+// Set animation curve
+                enlargeCenterPage: true,
+// Increase the size of the center item
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+              items: imgs.map((imageUrl) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          image: DecorationImage(
+                            image: AssetImage(imageUrl),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -77,76 +113,12 @@ class ChestScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // const Padding(
-            //   padding: EdgeInsets.only(left: 10),
-            //   child: Text(
-            //     '4 Workouts for bignner',
-            //     style: TextStyle(
-            //         fontSize: 16,
-            //         color: Colors.green,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Container(
-            //       decoration: BoxDecoration(
-            //         color: const Color.fromARGB(96, 110, 108, 108),
-            //         borderRadius: BorderRadius.circular(40),
-            //       ),
-            //       child: const Center(
-            //         child: Padding(
-            //           padding: EdgeInsets.symmetric(
-            //               horizontal: 15, vertical: 5),
-            //           child: Row(
-            //             children: [
-            //               Icon(
-            //                 Icons.play_arrow_rounded,
-            //                 color: Colors.white,
-            //                 size: 25,
-            //               ),
-            //               Text(
-            //                 '60 min',
-            //                 style: TextStyle(color: Colors.white, fontSize: 12),
-            //               )
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //     const SizedBox(width: 70),
-            //     Container(
-            //       decoration: BoxDecoration(
-            //         color: const Color.fromARGB(96, 110, 108, 108),
-            //         borderRadius: BorderRadius.circular(40),
-            //       ),
-            //       child: Center(
-            //         child: Padding(
-            //           padding: const EdgeInsets.symmetric(
-            //               horizontal: 15, vertical: 5),
-            //           child: Row(
-            //             children: [
-            //               Image.asset('assets/Flame.png'),
-            //               const Text(
-            //                 '  350 Cal',
-            //                 style: TextStyle(color: Colors.white, fontSize: 12),
-            //               )
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //     )
-            //   ],
-            // ),
+
             const Padding(
               padding:
-                  EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
+              EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
               child: Text(
-                'Want your body to be healthy. Join our program with directions according to body’s goals. Increasing physical strength is the goal of strenght training. Maintain body fitness by doing physical exercise at least 2-3 times a week. ',
+                'Want your body to be healthy. Join our program with directions according to body’s goals.Follow Below list of Exercises For Today',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -154,7 +126,7 @@ class ChestScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return Padding(

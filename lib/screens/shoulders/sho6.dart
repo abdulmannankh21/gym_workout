@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+ 
+
+import '../../preference_controller.dart';
 
 class Sho6 extends StatelessWidget {
   const Sho6({super.key});
 
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
+   final PreferenceController prefsController = Get.put(PreferenceController());
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -35,7 +40,7 @@ class Sho6 extends StatelessWidget {
                     child: SizedBox(
                       height: size.height * 0.28,
                       width: size.width * 0.94,
-                      child: Image.asset('assets/gifs/abs6.gif'),
+                      child: Image.asset('assets/gifs/sho6.gif'),
                     ),
                   ),
                 ],
@@ -57,12 +62,20 @@ class Sho6 extends StatelessWidget {
           SizedBox(
             height: size.height * 0.03,
           ),
-          // const Text(
-          //   '4 Sets x 12 Reps',
-          //   style: TextStyle(
-          //     fontSize: 20,
-          //   ),
-          // ),
+            prefsController.isloggedin ?
+           Column(
+             children: [
+               Text(
+                'Reps: ${prefsController.reps}',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+          ),
+               Text("Repition:${prefsController.repetitions}",style: TextStyle(
+                 fontSize: 20,
+               ),),
+             ],
+           ):SizedBox(),
           SizedBox(
             height: size.height * 0.02,
           ),

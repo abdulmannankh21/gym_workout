@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+ 
+
+import '../../preference_controller.dart';
 
 class Legs4 extends StatelessWidget {
-  const Legs4({super.key});
+   Legs4({super.key});
 
+    final PreferenceController prefsController = Get.put(PreferenceController());
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -49,7 +54,6 @@ class Legs4 extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-
           Text(
             'Squat hold calf raise',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -57,12 +61,20 @@ class Legs4 extends StatelessWidget {
           SizedBox(
             height: size.height * 0.03,
           ),
-          // const Text(
-          //   '4 Sets x 12 Reps',
-          //   style: TextStyle(
-          //     fontSize: 20,
-          //   ),
-          // ),
+           prefsController.isloggedin ?
+           Column(
+             children: [
+               Text(
+                'Reps: ${prefsController.reps}',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+          ),
+               Text("Repition:${prefsController.repetitions}",style: TextStyle(
+                 fontSize: 20,
+               ),),
+             ],
+           ):SizedBox(),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -78,8 +90,7 @@ class Legs4 extends StatelessWidget {
                 children: const [
                   Text(
                     'TARGET MUSCLES:',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     'Calves',
@@ -101,8 +112,7 @@ class Legs4 extends StatelessWidget {
                 children: [
                   const Text(
                     'PREPARATION AND EXECUTION:',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: size.height * 0.02,

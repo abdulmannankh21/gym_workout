@@ -25,7 +25,7 @@ class BicepsScreen extends StatelessWidget {
     'Cable close grip\ncurl '
   ];
 
-  final List screens = const [
+  final List screens =  [
     Biceps1(),
     Biceps2(),
     Biceps3(),

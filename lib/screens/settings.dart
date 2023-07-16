@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gym_workout/screens/chose_login_suginUp_ofline.dart';
-import 'login_signup_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   final SettingsController _settingsController = Get.put(SettingsController());
