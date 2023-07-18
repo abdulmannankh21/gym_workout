@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
 
     // Define a function to handle navigation based on the day
     Widget? navigateToScreen() {
-      switch (6) {
+      switch (currentDay) {
         case DateTime.monday:
           return ChestsScreen();
         case DateTime.tuesday:

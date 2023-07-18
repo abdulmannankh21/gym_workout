@@ -9,8 +9,8 @@ import '../widgets/custombutton.dart';
 
 class ProfExerciseLevel extends StatelessWidget {
   static const double _itemHeight = 50;
-  static const int _itemCount = 3;
-  List level = ['Beginner', 'Intermediate', 'Expert'];
+  static const int _itemCount = 4;
+  List level = ['Not Defined','Beginner', 'Intermediate', 'Expert'];
   final _scrollController = FixedExtentScrollController();
   @override
   Widget build(BuildContext context) {

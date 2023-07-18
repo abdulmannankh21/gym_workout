@@ -112,22 +112,22 @@ class RecipeController extends GetxController {
   }
   Widget getMealPlanText(String exerciseLevel) {
     if (exerciseLevel == 'Beginner') {
-      return Text(
+      return const Text(
         "Focus on establishing healthy eating habits and balanced nutrition.\n\nSample meal plan:\n\nBreakfast: Oatmeal with berries and a boiled egg.\n\nSnack: Greek yogurt with mixed nuts.\n\nLunch: Grilled chicken breast with quinoa and steamed vegetables.\n\nSnack: Apple slices with almond butter.\n\nDinner: Baked salmon with brown rice and roasted asparagus.\n\nSnack: Protein shake or a piece of fruit",
         style: TextStyle(color: Colors.white),
       );
     } else if (exerciseLevel == 'Intermidate') {
-      return Text(
+      return const Text(
         "Focus on maintaining a balanced diet and increasing nutrient intake.\n\nSample meal plan:\n\nBreakfast: Whole grain toast with avocado and poached eggs.\n\nSnack: Protein smoothie with spinach and almond milk.\n\nLunch: Grilled chicken salad with quinoa, vegetables, and olive oil dressing.\n\nSnack: Hummus with carrot sticks.\n\nDinner: Grilled steak with sweet potato and roasted Brussels sprouts.\n\nSnack: Greek yogurt with mixed berries.",
         style: TextStyle(color: Colors.white),
       );
     } else if (exerciseLevel == 'Expert') {
-      return Text(
+      return const Text(
         "Focus on optimizing performance and recovery with nutrient-dense foods.\n\nSample meal plan:\n\nBreakfast: Quinoa porridge with mixed berries and nuts.\n\nSnack: Energy bars with dates, nuts, and seeds.\n\nLunch: Grilled salmon with quinoa, roasted vegetables, and avocado.\n\nSnack: Green smoothie with kale, banana, and almond milk.\n\nDinner: Grilled chicken or tofu with sweet potato, quinoa, and steamed broccoli.\n\nSnack: Cottage cheese with pineapple and chia seeds.",
         style: TextStyle(color: Colors.white),
       );
     } else {
-      return Text(
+      return const Text(
         "Invalid exercise level.",
         style: TextStyle(color: Colors.white),
       );

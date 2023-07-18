@@ -44,10 +44,14 @@ class _BacksScreenState extends State<BacksScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Column(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Container(
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CarouselSlider(
@@ -112,7 +116,7 @@ class _BacksScreenState extends State<BacksScreen> {
             ),
             const Padding(
               padding:
-              EdgeInsets.only(left: 10, top: 20, bottom: 10, right: 10),
+              EdgeInsets.all(10),
               child: Text(
                 'Want your body to be healthy. Join our program with directions according to body’s goals.Follow Below list of Exercises For Today',
                 style: TextStyle(
@@ -122,8 +126,8 @@ class _BacksScreenState extends State<BacksScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  itemCount: 5,
+
+                  itemCount: screens.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding:  EdgeInsets.all(20),

@@ -17,7 +17,7 @@ class LoginSignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  Future<void> signUp() async {
+  void signUp()  {
     final name = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
@@ -27,21 +27,20 @@ class LoginSignUpController extends GetxController {
     }
 
     try {
-      final userCredential = await signUpWithEmailAndPassword(email, password);
-      await storeUserCredentials(userCredential.user!.uid, name, email, password);
+      signUpWithEmailAndPassword(email, password)
+          .then((userCredential) {
+        storeUserCredentials(
+            userCredential.user!.uid, name, email, password);
 
-      // Send email verification
-      await sendEmailVerification();
-
+        // Send email verification
+        sendEmailVerification();
+      });
       // Show snackbar message
       Get.snackbar(
         'Account Created',
         'Your account has been successfully created! Please verify your email.',
-        snackPosition: SnackPosition.TOP,
-        backgroundGradient: LinearGradient(
-          colors: [Colors.blue, Colors.green],
-        ),
-        colorText: Colors.green,
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Colors.white,
       );
 
       // Navigate back to the signup screen
@@ -102,11 +101,8 @@ class LoginSignUpController extends GetxController {
           Get.snackbar(
             'Login Success',
             'You have successfully logged in!',
-            snackPosition: SnackPosition.TOP,
-            backgroundGradient: LinearGradient(
-              colors: [Colors.blue, Colors.green],
-            ),
-            colorText: Colors.green,
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
           );
           final prefs = await _preferences;
           prefs.setBool('isLoggedIn', true);

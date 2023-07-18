@@ -9,8 +9,6 @@ class SettingsScreen extends StatelessWidget {
 
   SettingsScreen({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -41,35 +39,34 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Obx(
-                              () {
-                            final name = _settingsController.name.value;
-                            return Text(
+                    Obx(
+                      () {
+                        final name = _settingsController.name.value;
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
                               name,
                               style: const TextStyle(
                                 fontSize: 30,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
-                            );
-                          },
-                        ),
-                        Text(
-                          _settingsController.exerciseLevel.value,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                            ),
+                            Text(
+                              _settingsController.exerciseLevel.value,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),
-
                 const SizedBox(
                   height: 50,
                 ),
@@ -85,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     Obx(
-                          () {
+                      () {
                         final email = _settingsController.weight.value;
                         return Text(
                           email,
@@ -114,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     Obx(
-                          () {
+                      () {
                         final email = _settingsController.age.value;
                         return Text(
                           email,
@@ -167,7 +164,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     Obx(
-                          () {
+                      () {
                         final email = _settingsController.email.value;
                         return Text(
                           email,
@@ -202,7 +199,7 @@ class SettingsScreen extends StatelessWidget {
                             child: const Text('No'),
                           ),
                           ElevatedButton(
-                            onPressed:(){
+                            onPressed: () {
                               _settingsController.signOutUser();
                             },
                             style: ElevatedButton.styleFrom(
@@ -216,7 +213,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child:  Text(
+                  child: Text(
                     'Logout',
                     style: TextStyle(
                       fontSize: 24,
@@ -247,6 +244,7 @@ class SettingsController extends GetxController {
     super.onInit();
     fetchData(); // Call the method to fetch user data on initialization
   }
+
   void signOutUser() async {
     try {
       await FirebaseAuth.instance.signOut();
