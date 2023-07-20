@@ -16,7 +16,7 @@ class BacksScreen extends StatefulWidget {
 
 class _BacksScreenState extends State<BacksScreen> {
   var _currentIndex = 0;
-  final  List imgs = [
+  final List imgs = [
     'assets/gifs/back1.gif',
     'assets/gifs/back2.gif',
     'assets/gifs/back3.gif',
@@ -33,7 +33,7 @@ class _BacksScreenState extends State<BacksScreen> {
     'Hanging leg hip\nraise waist'
   ];
 
-  final List screens =  [
+  final List screens = [
     Back1(),
     Back2(),
     Back3(),
@@ -47,10 +47,7 @@ class _BacksScreenState extends State<BacksScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -115,8 +112,7 @@ class _BacksScreenState extends State<BacksScreen> {
               ),
             ),
             const Padding(
-              padding:
-              EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               child: Text(
                 'Want your body to be healthy. Join our program with directions according to body’s goals.Follow Below list of Exercises For Today',
                 style: TextStyle(
@@ -126,11 +122,10 @@ class _BacksScreenState extends State<BacksScreen> {
             ),
             Expanded(
               child: ListView.builder(
-
                   itemCount: screens.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding:  EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20),
                       child: GestureDetector(
                         onTap: () {
                           Get.to(screens[index]);

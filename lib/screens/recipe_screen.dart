@@ -116,7 +116,7 @@ class RecipeController extends GetxController {
         "Focus on establishing healthy eating habits and balanced nutrition.\n\nSample meal plan:\n\nBreakfast: Oatmeal with berries and a boiled egg.\n\nSnack: Greek yogurt with mixed nuts.\n\nLunch: Grilled chicken breast with quinoa and steamed vegetables.\n\nSnack: Apple slices with almond butter.\n\nDinner: Baked salmon with brown rice and roasted asparagus.\n\nSnack: Protein shake or a piece of fruit",
         style: TextStyle(color: Colors.white),
       );
-    } else if (exerciseLevel == 'Intermidate') {
+    } else if (exerciseLevel == 'Intermediate') {
       return const Text(
         "Focus on maintaining a balanced diet and increasing nutrient intake.\n\nSample meal plan:\n\nBreakfast: Whole grain toast with avocado and poached eggs.\n\nSnack: Protein smoothie with spinach and almond milk.\n\nLunch: Grilled chicken salad with quinoa, vegetables, and olive oil dressing.\n\nSnack: Hummus with carrot sticks.\n\nDinner: Grilled steak with sweet potato and roasted Brussels sprouts.\n\nSnack: Greek yogurt with mixed berries.",
         style: TextStyle(color: Colors.white),
