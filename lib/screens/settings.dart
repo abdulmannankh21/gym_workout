@@ -48,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
                             Text(
                               name,
                               style: const TextStyle(
-                                fontSize: 30,
+                                fontSize: 22,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -56,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
                             Text(
                               _settingsController.exerciseLevel.value,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -87,7 +87,7 @@ class SettingsScreen extends StatelessWidget {
                         return Text(
                           email,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -116,7 +116,7 @@ class SettingsScreen extends StatelessWidget {
                         return Text(
                           email,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -142,7 +142,7 @@ class SettingsScreen extends StatelessWidget {
                     Text(
                       _settingsController.goal.value,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -169,13 +169,54 @@ class SettingsScreen extends StatelessWidget {
                         return Text(
                           email,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         );
                       },
                     ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Delete Profile',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                        onTap: () async{
+                          try {
+                            // Get the current user
+                            User? user = FirebaseAuth.instance.currentUser;
+
+                            if (user != null) {
+                              // Delete the user
+                              await user.delete();
+                              Get.snackbar(
+                                "Deleted",
+                                "User deleted successfully.",
+                                snackPosition: SnackPosition.BOTTOM,
+                                colorText: Colors.red
+                              );
+                              Get.offAll(ChoseLoginOfline());
+                            } else {
+                              print('No user is currently signed in.');
+                            }
+                          } catch (e) {
+                            print('Error deleting user: $e');
+                          }
+
+                        },
+                        child: Icon(Icons.delete,color: Colors.red,)),
                   ],
                 ),
                 const SizedBox(

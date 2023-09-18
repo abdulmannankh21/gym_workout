@@ -16,6 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSizes.initializeSize(context);
     return GetMaterialApp(
+      builder: (context, child) {
+        return MediaQuery(
+          child: child!,
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+        );
+      },
       debugShowCheckedModeBanner: false,
       title: 'Gym Workout',
       theme: ThemeData(

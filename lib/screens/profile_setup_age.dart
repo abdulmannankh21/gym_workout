@@ -3,12 +3,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_workout/screens/profile_weight.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../sizes.dart';
 import '../widgets/custombutton.dart';
 
-class ProfAge extends StatelessWidget {
+class ProfAge extends StatefulWidget {
   static const double _itemHeight = 50;
+
+  @override
+  State<ProfAge> createState() => _ProfAgeState();
+}
+
+class _ProfAgeState extends State<ProfAge> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    settingPrefs();
+  }
+  void settingPrefs() async {
+    final _preferences = SharedPreferences.getInstance();
+    final prefs = await _preferences;
+    prefs.setBool('isLoggedIn', true);
+  }
 //`  static const int _itemCount = 5;
   List age = [
     '18',
@@ -50,7 +67,9 @@ class ProfAge extends StatelessWidget {
     '65-70',
     '80+',
   ];
+
   final _scrollController = FixedExtentScrollController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -106,14 +125,14 @@ class ProfAge extends StatelessWidget {
             Expanded(
               child: ClickableListWheelScrollView(
                 scrollController: _scrollController,
-                itemHeight: _itemHeight,
+                itemHeight: ProfAge._itemHeight,
                 itemCount: age.length,
                 onItemTapCallback: (index) {
                   print("onItemTapCallback index: $index");
                 },
                 child: ListWheelScrollView.useDelegate(
                   controller: _scrollController,
-                  itemExtent: _itemHeight,
+                  itemExtent: ProfAge._itemHeight,
                   physics: FixedExtentScrollPhysics(),
                   overAndUnderCenterOpacity: 0.7,
                   perspective: 0.002,

@@ -105,7 +105,7 @@ class _BacksScreenState extends State<BacksScreen> {
                     'Back',
                     style: TextStyle(
                         fontSize: 50,
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white ,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -148,24 +148,13 @@ class _BacksScreenState extends State<BacksScreen> {
                                       titles[index],
                                       softWrap: true,
                                       style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 12,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
-                                subtitle: const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "00:10",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
                               ),
                             ),
                           ],

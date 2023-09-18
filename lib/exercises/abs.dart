@@ -62,7 +62,7 @@ class AbsScreen extends StatelessWidget {
                 height: size.height * 0.25,
                 width: size.width * 1,
                 child: Image.asset(
-                  'assets/sh.png',
+                  'assets/gifs/abs2.gif',
                   fit: BoxFit.fill,
                 )),
             Padding(
@@ -74,7 +74,7 @@ class AbsScreen extends StatelessWidget {
                     'Abs',
                     style: TextStyle(
                         fontSize: 50,
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white ,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -184,24 +184,13 @@ class AbsScreen extends StatelessWidget {
                                       titles[index],
                                       softWrap: true,
                                       style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 12,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
-                                subtitle: const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "00:10",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
                               ),
                             ),
                           ],

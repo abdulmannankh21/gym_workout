@@ -6,6 +6,7 @@ import 'package:gym_workout/screens/recipe_screen.dart';
 import 'package:gym_workout/screens/settings.dart';
 
 import 'package:gym_workout/workouts/workout.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyNavBar extends StatefulWidget {
   const MyNavBar({super.key});
@@ -16,12 +17,24 @@ class MyNavBar extends StatefulWidget {
 
 class _MyNavBarState extends State<MyNavBar> {
   int selectedPage = 0;
+
   final _pageOptions = [
     const HomePage(),
     const WorkoutScreen(),
      RecipeScreen(),
      SettingsScreen()
   ];
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   settingPrefs();
+  }
+  void settingPrefs() async {
+    final _preferences = SharedPreferences.getInstance();
+    final prefs = await _preferences;
+    prefs.setBool('isLoggedIn', true);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

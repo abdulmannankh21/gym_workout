@@ -59,7 +59,7 @@ class ChestScreen extends StatelessWidget {
                 height: size.height * 0.25,
                 width: size.width * 1,
                 child: Image.asset(
-                  'assets/sh.png',
+                 'assets/gifs/chest1.gif',
                   fit: BoxFit.fill,
                 )),
             Padding(
@@ -71,7 +71,7 @@ class ChestScreen extends StatelessWidget {
                     'Chest',
                     style: TextStyle(
                         fontSize: 50,
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white ,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -177,28 +177,17 @@ class ChestScreen extends StatelessWidget {
                               child: ListTile(
                                 title: Row(
                                   children: [
-                                    Text(
+                                     Text(
                                       titles[index],
                                       softWrap: true,
                                       style: const TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 12,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
-                                subtitle: const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "00:10",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
                               ),
                             ),
                           ],

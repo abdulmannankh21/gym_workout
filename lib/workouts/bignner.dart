@@ -15,240 +15,242 @@ class Bigner extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Get.to(ShoulderScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Get.to(ShoulderScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/shoulder.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Image.asset(
-                          'assets/shoulder.jpeg',
-                          fit: BoxFit.cover,
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Shoulder",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(ChestScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/chest.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Shoulder",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(ChestScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Image.asset(
-                          'assets/chest.jpeg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Chest",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Chest",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
 
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.06,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Get.to(BackScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.06,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Get.to(BackScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/back.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Image.asset(
-                          'assets/wings.jpeg',
-                          fit: BoxFit.cover,
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Wings",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(LegsScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/legs.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Wings",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(LegsScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Legs",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.06,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Get.to(AbsScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/abs.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Image.asset(
-                          'assets/leg.jpeg',
-                          fit: BoxFit.cover,
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Abs",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(BicepsScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/bicep.jpeg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Legs",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.06,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Get.to(AbsScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Bicep",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.06,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Get.to(TricepsScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.asset(
+                            'assets/tricep.jpeg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Image.asset(
-                          'assets/abs.jpeg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Abs",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(BicepsScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Image.asset(
-                          'assets/bicep.jpeg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Bicep",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.06,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Get.to(TricepsScreen());
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Image.asset(
-                          'assets/tricep.jpeg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                          bottom: 0.0,
-                          child: Text(
-                            "Tricep",
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          )),
-                    ],
-                  )),
-            ],
-          ),
-        ],
+                        Positioned(
+                            bottom: 0.0,
+                            child: Text(
+                              "Tricep",
+                              style: TextStyle(
+                                  color: Colors.white ,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            )),
+                      ],
+                    )),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
