@@ -7,19 +7,23 @@ import 'package:gym_workout/sizes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     AppSizes.initializeSize(context);
     return GetMaterialApp(
       builder: (context, child) {
         return MediaQuery(
-          child: child!,
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+          child: child!,
         );
       },
       debugShowCheckedModeBanner: false,
