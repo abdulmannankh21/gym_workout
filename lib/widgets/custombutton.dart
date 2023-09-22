@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomButton extends StatelessWidget {
   final String txt;
@@ -31,7 +32,8 @@ class CustomButton extends StatelessWidget {
           children: [
             Text(
               txt,
-              style: const TextStyle(color: Colors.black),
+              style: TextStyle(
+                  color: Colors.black, fontSize: Get.width > 400 ? 25 : null),
             ),
           ],
         ),
