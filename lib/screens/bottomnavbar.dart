@@ -28,7 +28,7 @@ class _MyNavBarState extends State<MyNavBar> {
   void initState() {
     // TODO: implement initState
     super.initState();
-   settingPrefs();
+   // settingPrefs();
   }
   void settingPrefs() async {
     final _preferences = SharedPreferences.getInstance();

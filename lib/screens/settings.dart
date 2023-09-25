@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gym_workout/screens/chose_login_suginUp_ofline.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatelessWidget {
   final SettingsController _settingsController = Get.put(SettingsController());
@@ -240,7 +241,9 @@ class SettingsScreen extends StatelessWidget {
                             child: const Text('No'),
                           ),
                           ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
+                              final prefs = await SharedPreferences.getInstance();
+                              await prefs.clear();
                               _settingsController.signOutUser();
                             },
                             style: ElevatedButton.styleFrom(
