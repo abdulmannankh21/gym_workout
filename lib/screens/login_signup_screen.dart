@@ -18,22 +18,36 @@ class LoginSignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  void signUp() {
+  Future<void> signUp() async {
     final name = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
+    final confirmPassword = confirmPasswordController.text.trim();
 
     if (email.isEmpty || password.isEmpty || name.isEmpty) {
       return;
     }
 
-    try {
-      signUpWithEmailAndPassword(email, password).then((userCredential) {
-        storeUserCredentials(userCredential.user!.uid, name, email, password);
+    if (password != confirmPassword) {
+      Get.snackbar(
+        'Password Not Matched',
+        'Both Passwords do not match',
+        snackPosition: SnackPosition.TOP,
+        backgroundGradient: LinearGradient(
+          colors: [Colors.blue, Colors.green],
+        ),
+        colorText: Colors.red,
+      );
+      return;
+    }
 
-        // Send email verification
-        sendEmailVerification();
-      });
+    try {
+      final userCredential = await signUpWithEmailAndPassword(email, password);
+      storeUserCredentials(userCredential.user!.uid, name, email, password);
+
+      // Send email verification
+      await sendEmailVerification();
+
       // Show snackbar message
       Get.snackbar(
         'Account Created',
@@ -48,14 +62,12 @@ class LoginSignUpController extends GetxController {
       print('Signup Error: $e');
     }
   }
-
   Future<void> sendEmailVerification() async {
     final user = _auth.currentUser;
     if (user != null && !user.emailVerified) {
       await user.sendEmailVerification();
     }
   }
-
   Future<UserCredential> signUpWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -81,82 +93,68 @@ class LoginSignUpController extends GetxController {
       print('Firestore Error: $e');
     }
   }
-
   Future<void> login() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    final confirmpassword = confirmPasswordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
       return;
     }
-    if(password != confirmpassword){
+
+    try {
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (userCredential.user != null) {
+        if (userCredential.user!.emailVerified) {
+          Get.snackbar(
+            'Login Success',
+            'You have successfully logged in!',
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
+          );
+          final prefs = await _preferences;
+          // prefs.setBool('isLoggedIn', true); // Set isLoggedIn to true upon successful login
+          final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+          isLoggedIn
+              ? Get.offAll(MyNavBar())
+              : Get.off(() => ProfAge());
+        } else {
+          Get.snackbar(
+            'Login Failed',
+            'Please verify your email before logging in.',
+            snackPosition: SnackPosition.TOP,
+            backgroundGradient: LinearGradient(
+              colors: [Colors.blue, Colors.green],
+            ),
+            colorText: Colors.red,
+          );
+        }
+      } else {
         Get.snackbar(
-          'Password Not Matched',
-          'Both Password not same',
+          'Login Failed',
+          'Invalid email or password. Please try again.',
           snackPosition: SnackPosition.TOP,
           backgroundGradient: LinearGradient(
             colors: [Colors.blue, Colors.green],
           ),
           colorText: Colors.red,
         );
-    }
-      try {
-
-          final userCredential = await _auth.signInWithEmailAndPassword(
-            email: email,
-            password: password,
-          );
-          if (userCredential.user != null) {
-            if (userCredential.user!.emailVerified) {
-              Get.snackbar(
-                'Login Success',
-                'You have successfully logged in!',
-                snackPosition: SnackPosition.BOTTOM,
-                colorText: Colors.white,
-              );
-              final prefs = await _preferences;
-              bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-              isLoggedIn
-                  ? Get.offAll( MyNavBar())
-                  : Get.off(() => ProfAge());
-            } else {
-              Get.snackbar(
-                'Login Failed',
-                'Please verify your email before logging in.',
-                snackPosition: SnackPosition.TOP,
-                backgroundGradient: LinearGradient(
-                  colors: [Colors.blue, Colors.green],
-                ),
-                colorText: Colors.red,
-              );
-            }
-          } else {
-            Get.snackbar(
-              'Login Failed',
-              'Invalid email or password. Please try again.',
-              snackPosition: SnackPosition.TOP,
-              backgroundGradient: LinearGradient(
-                colors: [Colors.blue, Colors.green],
-              ),
-              colorText: Colors.red,
-            );
-        }
-      } catch (e) {
-        print('Login Error: $e');
-        Get.snackbar(
-          'Login Error',
-          'An error occurred during login. Please try again.',
-          snackPosition: SnackPosition.TOP,
-          backgroundGradient: LinearGradient(
-            colors: [Colors.blue, Colors.green],
-          ),
-        );
-
+      }
+    } catch (e) {
+      print('Login Error: $e');
+      Get.snackbar(
+        'Login Error',
+        'An error occurred during login. Please try again.',
+        snackPosition: SnackPosition.TOP,
+        backgroundGradient: LinearGradient(
+          colors: [Colors.blue, Colors.green],
+        ),
+      );
     }
   }
 }
-
 class LoginSignUpScreen extends GetView<LoginSignUpController> {
   final bool isSignup;
 
@@ -204,121 +202,116 @@ class LoginSignUpScreen extends GetView<LoginSignUpController> {
               Center(
                 child: isSignup
                     ? const Text(
-                        "Log In",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
-                      )
+                  "Log In",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                )
                     : const Text(
-                        "SignUp",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
-                      ),
+                  "SignUp",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
               const SizedBox(
                 height: 160,
               ),
               isSignup
                   ? Column(
-                    children: [
-                      CustomTextField(
-                        controller: controller.emailController,
-                        label: 'Email',
-                        hinttxt: 'Enter your Email',
-                        keyboardtype: TextInputType.emailAddress,
-                        isobsecure: false,
+                children: [
+                  CustomTextField(
+                    controller: controller.emailController,
+                    label: 'Email',
+                    hinttxt: 'Enter your Email',
+                    keyboardtype: TextInputType.emailAddress,
+                    isobsecure: false,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    controller: controller.passwordController,
+                    label: 'Password',
+                    hinttxt: 'Enter your Password',
+                    isobsecure: true,
+                    keyboardtype: TextInputType.visiblePassword,
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    txt: "Login",
+                    width: Get.width * 0.5,
+                    hight: Get.height * 0.05,
+                    onPressed: controller.login,
+                    margin: EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Colors.blue, Colors.green],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextField(
-                        controller: controller.passwordController,
-                        label: 'Password',
-                        hinttxt: 'Enter your Password',
-                        isobsecure: true,
-                        keyboardtype: TextInputType.visiblePassword,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextField(
-                        controller: controller.confirmPasswordController,
-                        label: 'Confirm Password',
-                        hinttxt: 'Enter Confirm Password',
-                        isobsecure: true,
-                        keyboardtype: TextInputType.visiblePassword,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      CustomButton(
-                        txt: "Login",
-                        width: Get.width * 0.5,
-                        hight: Get.height * 0.05,
-                        onPressed: controller.login,
-                        margin: EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Colors.blue, Colors.green],
-                          ),
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                      ),
-                    ],
-                  )
-                  : Column(
-                      children: [
-                        CustomTextField(
-                          controller: controller.nameController,
-                          label: 'Name',
-                          hinttxt: 'Enter your Name',
-                          isobsecure: false,
-                          keyboardtype: TextInputType.text,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CustomTextField(
-                          controller: controller.emailController,
-                          label: 'Email',
-                          hinttxt: 'Enter your Email',
-                          keyboardtype: TextInputType.emailAddress,
-                          isobsecure: false,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CustomTextField(
-                          controller: controller.passwordController,
-                          label: 'Password',
-                          hinttxt: 'Enter your Password',
-                          keyboardtype: TextInputType.visiblePassword,
-                          isobsecure: true,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CustomButton(
-                          txt: "SignUp",
-                          width: Get.width * 0.5,
-                          hight: Get.height * 0.05,
-                          onPressed: controller.signUp,
-                          margin: EdgeInsets.all(30),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.blue, Colors.green],
-                            ),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                        ),
-                      ],
+                      borderRadius: BorderRadius.circular(40),
                     ),
+                  ),
+                ],
+              )
+                  : Column(
+                children: [
+                  CustomTextField(
+                    controller: controller.nameController,
+                    label: 'Name',
+                    hinttxt: 'Enter your Name',
+                    isobsecure: false,
+                    keyboardtype: TextInputType.text,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    controller: controller.emailController,
+                    label: 'Email',
+                    hinttxt: 'Enter your Email',
+                    keyboardtype: TextInputType.emailAddress,
+                    isobsecure: false,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    controller: controller.passwordController,
+                    label: 'Password',
+                    hinttxt: 'Enter your Password',
+                    keyboardtype: TextInputType.visiblePassword,
+                    isobsecure: true,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    controller: controller.confirmPasswordController,
+                    label: 'Confirm Password',
+                    hinttxt: 'Enter Confirm Password',
+                    isobsecure: true,
+                    keyboardtype: TextInputType.visiblePassword,
+                  ),
+                  CustomButton(
+                    txt: "SignUp",
+                    width: Get.width * 0.5,
+                    hight: Get.height * 0.05,
+                    onPressed: controller.signUp,
+                    margin: EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Colors.blue, Colors.green],
+                      ),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -326,3 +319,4 @@ class LoginSignUpScreen extends GetView<LoginSignUpController> {
     );
   }
 }
+
